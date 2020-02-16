@@ -1,13 +1,4 @@
-" NOTE: Here begins the configuration script for the JCommenter. Later on this
-" same file you can find the real script.
-" It is a good idea to copy-paste the configuration part to another file, as
-" you might want to preserve it for the next version (remember to add
-" the new options!).
-" See below for the real script description
-
-" --- cut here (configuration) ---
-
-" Configuration file for jcommenter
+" Configuration for jcommenter
 "
 " Copy the necessary contents from this file to your .vimrc, or modify this
 " file and add a source command to vimrc to read this file.
@@ -30,7 +21,7 @@ map <M-p> :call SearchInvalidComment(1)<cr>
 imap <M-p> <esc>:call SearchInvalidComment(1)<cr>a
 
 " modeline:
-let b:jcommenter_modeline = "/* vim: set " . (&et ? "et" : "noet") . " sw=" . &sw . " ts=" . &ts . ": */"
+let g:jcommenter_modeline = "/* vim: set " . (&et ? "et" : "noet") . " sw=" . &sw . " ts=" . &ts . ": */"
 .
 " A way to automate the creation of the comments. Works only if the
 " class/method declaration is on one row. Comments are generated when the
@@ -47,76 +38,76 @@ let b:jcommenter_modeline = "/* vim: set " . (&et ? "et" : "noet") . " sw=" . &s
 iabbrev }- }<esc>h%?\w<cr>:nohl<cr>:call JCommentWriter()<cr>
 
 " Move cursor to the place where inserting comments supposedly should start
-let b:jcommenter_move_cursor = 1
+let g:jcommenter_move_cursor = 1
 
 " Defines whether to move the cursor to the line which has "/**", or the line
-" after that (effective only if b:jcommenter_move_cursor is enabled)
-let b:jcommenter_description_starts_from_first_line = 0
+" after that (effective only if g:jcommenter_move_cursor is enabled)
+let g:jcommenter_description_starts_from_first_line = 0
 
 " Start insert mode after calling the commenter. Effective only if
-" b:jcommenter_move_cursor is enabled.
-let b:jcommenter_autostart_insert_mode = 1
+" g:jcommenter_move_cursor is enabled.
+let g:jcommenter_autostart_insert_mode = 1
 
 " The number of empty rows (containing only the star) to be added for the
 " description of the method
-let b:jcommenter_method_description_space = 2
+let g:jcommenter_method_description_space = 2
 
 " The number of empty rows (containing only the star) to be added for the´
 " description of the field. Can be also -1, which means that "/**  */" is added
 " above the field declaration
-let b:jcommenter_field_description_space = 1
+let g:jcommenter_field_description_space = 1
 
 " The number of empty rows (containing only the star) to be added for the
 " description of the class
-let b:jcommenter_class_description_space = 2
+let g:jcommenter_class_description_space = 2
 
 " If this option is enabled, and a method has no exceptions, parameters or
 " return value, the space for the description of that method is allways one
 " row. This is handy if you want to keep an empty line between the description
 " and the tags, as is defined in Sun's java code conventions
-let b:jcommenter_smart_method_description_spacing = 1
+let g:jcommenter_smart_method_description_spacing = 1
 
 " the default content for the author-tag of class-comments. Leave empty to add
 " just the empty tag, or outcomment to prevent author tag generation
-let b:jcommenter_class_author = ''
+let g:jcommenter_class_author = ''
 
 " the default content for the version-tag of class-comments. Leave empty to add
 " just the empty tag, or outcomment to prevent version tag generation
-let b:jcommenter_class_version = ''
+"let g:jcommenter_class_version = ''
 
 " The default author added to the file comments. leave empty to add just the
 " field where the autor can be added, or outcomment to remove it.
-let b:jcommenter_file_author = ''
+let g:jcommenter_file_author = ''
 
 " The default copyright holder added to the file comments. leave empty to
 " add just the field where the copyright info can be added, or outcomment
 " to remove it.
-let b:jcommenter_file_copyright = ''
+let g:jcommenter_file_copyright = ''
 
 " Change this to true, if you want to use "@exception" instead of "@throws".
-let b:jcommenter_use_exception_tag = 0
+let g:jcommenter_use_exception_tag = 0
 
 " set to true if you don't like the automatically added "created"-time
-let b:jcommenter_file_noautotime = 0
+let g:jcommenter_file_noautotime = 0
 
 " define whether jcommenter tries to parse and update the existing Doc-comments
 " on the item it was executed on. If this feature is disabled, a completely new
 " comment-template is written
-let b:jcommenter_update_comments = 1
+let g:jcommenter_update_comments = 1
 
 " If you want to put some text where the parameter text, return text etc. would
 " normally go, uncomment and add the wanted text to these variables (this feature
 " is considered "unsupported", which means it will not work perfectly with every
 " other aspect of this script. For example, this will break the logic used to
 " find "invalid" comments, see mappings above):
-"let b:jcommenter_default_param  = ''
-"let b:jcommenter_default_return = ''
-"let b:jcommenter_default_throw  = ''
+"let g:jcommenter_default_param  = ''
+"let g:jcommenter_default_return = ''
+"let g:jcommenter_default_throw  = ''
 
 " Another "unsupported" feature: define the number of lines added after each
 " "tag-group" (except exceptions, which is often the last group). does not work
 " well with comment updating currently:
-"let b:jcommenter_tag_space = 1
+"let g:jcommenter_tag_space = 1
 
 
 " define wheter jcommenter should remove old tags (eg. if the return value was
@@ -125,12 +116,12 @@ let b:jcommenter_update_comments = 1
 " hard.
 " This feature is not throughly tested, and might delete something it was not
 " supposed to, so use with care. Only applicable if
-" b:jcommenter_update_comments is enabled.
-let b:jcommenter_remove_tags_on_update = 1
+" g:jcommenter_update_comments is enabled.
+let g:jcommenter_remove_tags_on_update = 1
 
 " Whether to prepend an empty line before the generated comment, if the
 " line just above the comment would otherwise be non-empty.
-let b:jcommenter_add_empty_line = 1
+let g:jcommenter_add_empty_line = 1
 
 " Uncomment and modify if you're not happy with the default file
 " comment-template:
@@ -142,9 +133,6 @@ let b:jcommenter_add_empty_line = 1
 "  call append(4, ' */')
 "endfunction
 
-
-" --- cut here (configuration) ---
-
 " File:          jcommenter.vim
 " Summary:       Functions for documenting java-code
 " Author:        Kalle Björklid <bjorklid@st.jyu.fi>
@@ -155,13 +143,13 @@ let b:jcommenter_add_empty_line = 1
 "  1.3   : Added check to see whether the script is already loaded
 "          Option to have an empty line automatically added before the
 "            generated comment if there was none previously. See config
-"            ("b:jcommenter_add_empty_line").
+"            ("g:jcommenter_add_empty_line").
 "  1.2.1 : When executed on last line (must be empty), modeline gets generated.
 "          Option to have default @return, @param etc. values. see config.
 "          Option to have space between "Tag groups"
 "  1.2 : Complete method comment updating. Now removes '@param'-tags
 "            if the parameter does not exist in the method header.
-"            Set "b:jcommenter_remove_tags_on_update" to true if you want to
+"            Set "g:jcommenter_remove_tags_on_update" to true if you want to
 "            use this option. Exceptions will not get removed ever, since
 "            determining whether they are RuntimeExceptions or not is very
 "            hard.
@@ -186,7 +174,7 @@ let b:jcommenter_add_empty_line = 1
 "  1.12: Fixed a bug where all methods were interpreted as constructors
 "        if 'ignorecase' was on. Thanks to David Menuhin for debugging this.
 "  1.11: Fixed a bug where the end part of the whole buffer was sometimes
-"        deleted when updating w/ the b:jcommenter_remove_tags_on_update
+"        deleted when updating w/ the g:jcommenter_remove_tags_on_update
 "        enabled.
 "  1.1 : Can now choose between '@throws' and '@exception' tags.
 "        When executed on single-line comments ("/** blah blah */") expands
@@ -235,9 +223,9 @@ let b:jcommenter_add_empty_line = 1
 "        */
 "
 "   The file name and 'Created'-date are automatically filled. The author-
-"   field is filled with the contents of 'b:jcommenter_file_author'-variable.
+"   field is filled with the contents of 'g:jcommenter_file_author'-variable.
 "   The automated date insertion can be prevented by defining the
-"   'b:jcommenter_file_noautotime'-variable.
+"   'g:jcommenter_file_noautotime'-variable.
 "   You can redefine completely the file comments-writer-function. See the
 "   configuration script for more info
 "
@@ -253,9 +241,9 @@ let b:jcommenter_add_empty_line = 1
 "	public class ClassName { ...
 "
 "   The @author-field is automatically filled with the contents of the
-"   'b:jcommenter_class_author'-variable.
+"   'g:jcommenter_class_author'-variable.
 "   The @version-field is automatically filled with the contents of the
-"   'b:jcommenter_class_def_version'-variable
+"   'g:jcommenter_class_def_version'-variable
 " - Method comments. JCommentWriter()-function automatically generates
 "   the template for method comments if it is called on a header of a
 "   method. The JavaDoc-tags are automatically generated by detecting
@@ -361,10 +349,10 @@ let b:jcommenter_add_empty_line = 1
 " THE SCRIPT
 
 " Load only once:
-if exists("b:did_javacom")
+if exists("g:did_javacom")
   finish
 endif
-let b:did_javacom = 1
+let g:did_javacom = 1
 
 " varible that tells what is put before the written string when using
 " the AppendStr-function.
@@ -387,9 +375,9 @@ let s:linesAppended = 0 " this counter is increased when the AppendStr-method
 let s:docCommentStart = -1
 let s:docCommentEnd   = -1
 
-let s:defaultParamText  = (exists('b:jcommenter_default_param'))  ? b:jcommenter_default_param : ''
-let s:defaultReturnText = (exists('b:jcommenter_default_return')) ? b:jcommenter_default_return : ''
-let s:defaultThrowText  = (exists('b:jcommenter_default_throw'))   ? b:jcommenter_default_throw : ''
+let s:defaultParamText  = (exists('g:jcommenter_default_param'))  ? g:jcommenter_default_param : ''
+let s:defaultReturnText = (exists('g:jcommenter_default_return')) ? g:jcommenter_default_return : ''
+let s:defaultThrowText  = (exists('g:jcommenter_default_throw'))   ? g:jcommenter_default_throw : ''
 
 " ===================================================
 " Public functions
@@ -437,11 +425,11 @@ function! JCommentWriter() range
   " echo s:debugstring
 
   let &ignorecase = s:oldICValue
-  let b:jcommenter_lines_appended = s:linesAppended
+  let g:jcommenter_lines_appended = s:linesAppended
 endfunction
 
 fun! s:AddEmpty()
-  if exists("b:jcommenter_add_empty_line") && b:jcommenter_add_empty_line
+  if exists("g:jcommenter_add_empty_line") && g:jcommenter_add_empty_line
     if getline(a:firstline - 2) !~ '^\s*$'
       let s:appendPos = a:firstline - 2
       call s:AppendStr("")
@@ -490,7 +478,7 @@ endfunction
 
 function! s:UpdateReturnValue()
   if s:method_returnValue == ''
-    if exists("b:jcommenter_remove_tags_on_update") && b:jcommenter_remove_tags_on_update
+    if exists("g:jcommenter_remove_tags_on_update") && g:jcommenter_remove_tags_on_update
       call s:RemoveTag(s:docCommentStart, s:docCommentEnd, 'return', '')
     endif
     return
@@ -582,7 +570,7 @@ function! s:UpdateParameters()
     let tagName = s:GetNextParameterName()
   endwhile
 
-  if exists("b:jcommenter_remove_tags_on_update") && b:jcommenter_remove_tags_on_update
+  if exists("g:jcommenter_remove_tags_on_update") && g:jcommenter_remove_tags_on_update
     call s:RemoveNonExistingParameters()
   endif
 endfunction
@@ -689,24 +677,24 @@ function! s:WriteMethodComments()
   let existingDocCommentType = s:HasDocComments()
   let s:method_comment_update_only = 0
 
-  if existingDocCommentType && exists("b:jcommenter_update_comments") && b:jcommenter_update_comments
+  if existingDocCommentType && exists("g:jcommenter_update_comments") && g:jcommenter_update_comments
     let s:method_comment_update_only = 1
     if existingDocCommentType == 1
       call s:ExpandSinglelineCommentsEx(s:singleLineCommentPos, 1)
     endif
     let s:firstUpdatedTagLine = -1
     call s:UpdateAllTags()
-    if exists("b:jcommenter_move_cursor") && b:jcommenter_move_cursor && s:firstUpdatedTagLine != -1
+    if exists("g:jcommenter_move_cursor") && g:jcommenter_move_cursor && s:firstUpdatedTagLine != -1
       exe "normal " . s:firstUpdatedTagLine . "G$"
-      if exists("b:jcommenter_autostart_insert_mode") && b:jcommenter_autostart_insert_mode
+      if exists("g:jcommenter_autostart_insert_mode") && g:jcommenter_autostart_insert_mode
         startinsert!
       endif
     endif
     return
   endif
 
-  if exists("b:jcommenter_method_description_space")
-    let descriptionSpace = b:jcommenter_method_description_space
+  if exists("g:jcommenter_method_description_space")
+    let descriptionSpace = g:jcommenter_method_description_space
   else
     let descriptionSpace = s:defaultMethodDescriptionSpace
   endif
@@ -716,7 +704,7 @@ function! s:WriteMethodComments()
   let param = s:GetNextParameterName()
   let exception = s:GetNextThrowName()
 
-  if param == '' && s:method_returnValue == '' && exception == '' && exists("b:jcommenter_smart_method_description_spacing") && b:jcommenter_smart_method_description_spacing
+  if param == '' && s:method_returnValue == '' && exception == '' && exists("g:jcommenter_smart_method_description_spacing") && g:jcommenter_smart_method_description_spacing
     call s:AppendStars(1)
   else
     call s:AppendStars(descriptionSpace)
@@ -729,8 +717,8 @@ function! s:WriteMethodComments()
     let param = s:GetNextParameterName()
   endwhile
 
-  if exists('b:jcommenter_tag_space') && b:jcommenter_tag_space && hadParam
-    call s:AppendStars(b:jcommenter_tag_space)
+  if exists('g:jcommenter_tag_space') && g:jcommenter_tag_space && hadParam
+    call s:AppendStars(g:jcommenter_tag_space)
   endif
 
   let hadReturn = (s:method_returnValue != '')
@@ -740,11 +728,11 @@ function! s:WriteMethodComments()
     let s:debugstring = s:debugstring . 'wroteReturnTag '
   endif
 
-  if exists('b:jcommenter_tag_space') && b:jcommenter_tag_space && hadReturn
-    call s:AppendStars(b:jcommenter_tag_space)
+  if exists('g:jcommenter_tag_space') && g:jcommenter_tag_space && hadReturn
+    call s:AppendStars(g:jcommenter_tag_space)
   endif
 
-  if exists("b:jcommenter_use_exception_tag") && b:jcommenter_use_exception_tag
+  if exists("g:jcommenter_use_exception_tag") && g:jcommenter_use_exception_tag
     let exTag = '@exception '
   else
     let exTag = '@throws '
@@ -812,8 +800,8 @@ endfunction
 function! s:WriteModeLine()
   let s:appendPos = s:rangeStart
   let s:indent    = ''
-  if exists("b:jcommenter_modeline")
-    call s:AppendStr(b:jcommenter_modeline)
+  if exists("g:jcommenter_modeline")
+    call s:AppendStr(g:jcommenter_modeline)
   endif
 endfunction
 
@@ -823,11 +811,11 @@ function! s:WriteFileComments()
     call JCommenter_OwnFileComments()
     return
   endif
-  if exists("b:jcommenter_file_author")
-    let author = b:jcommenter_file_author
+  if exists("g:jcommenter_file_author")
+    let author = g:jcommenter_file_author
   endif
 
-  if exists("b:jcommenter_file_noautotime") && b:jcommenter_file_noautotime
+  if exists("g:jcommenter_file_noautotime") && g:jcommenter_file_noautotime
     let created = ''
   else
     let created = strftime("%c")
@@ -836,12 +824,12 @@ function! s:WriteFileComments()
   let s:appendPos = s:rangeStart - 1
   let s:indent    = ''
   call s:AppendStr('/* file name  : ' . bufname("%"))
-  if exists("b:jcommenter_file_author")
+  if exists("g:jcommenter_file_author")
     call s:AppendStr(' * authors    : ' . author)
   endif
   call s:AppendStr(' * created    : ' . created)
-  if exists("b:jcommenter_file_copyright")
-    call s:AppendStr(' * copyright  : ' . b:jcommenter_file_copyright)
+  if exists("g:jcommenter_file_copyright")
+    call s:AppendStr(' * copyright  : ' . g:jcommenter_file_copyright)
   endif
   call s:AppendStr(' *')
   call s:AppendStr(' * modifications:')
@@ -852,17 +840,17 @@ endfunction
 function! s:WriteFieldComments()
   let s:appendPos = s:rangeStart - 1
   let s:indent = s:GetIndentation(s:combinedString)
-  if exists("b:jcommenter_field_description_space")
-    let descriptionSpace = b:jcommenter_field_description_space
+  if exists("g:jcommenter_field_description_space")
+    let descriptionSpace = g:jcommenter_field_description_space
   else
     let descriptionSpace = s:defaultFieldDescriptionSpace
   endif
 
   if descriptionSpace == -1
     call s:AppendStr('/**  */')
-    if exists("b:jcommenter_move_cursor")
+    if exists("g:jcommenter_move_cursor")
       normal k$hh
-      if exists("b:jcommenter_autostart_insert_mode")
+      if exists("g:jcommenter_autostart_insert_mode")
         startinsert
       endif
     endif
@@ -878,8 +866,8 @@ endfunction
 function! s:WriteClassComments()
   let s:indent = s:GetIndentation(s:combinedString)
 
-  if exists("b:jcommenter_class_description_space")
-    let descriptionSpace = b:jcommenter_class_description_space
+  if exists("g:jcommenter_class_description_space")
+    let descriptionSpace = g:jcommenter_class_description_space
   else
     let descriptionSpace = s:defaultFieldDescriptionSpace
   endif
@@ -890,12 +878,12 @@ function! s:WriteClassComments()
 
   call s:AppendStars(descriptionSpace)
 
-  if exists('b:jcommenter_class_author')
-    call s:AppendStr(' * @author ' . b:jcommenter_class_author)
+  if exists('g:jcommenter_class_author')
+    call s:AppendStr(' * @author ' . g:jcommenter_class_author)
   endif
 
-  if exists('b:jcommenter_class_version')
-    call s:AppendStr(' * @version ' . b:jcommenter_class_version)
+  if exists('g:jcommenter_class_version')
+    call s:AppendStr(' * @version ' . g:jcommenter_class_version)
   endif
 
   call s:AppendStr(' */')
@@ -1168,14 +1156,14 @@ function! s:MoveCursorToEOL(line)
 endfunction
 
 function! s:MoveCursor()
-  if !exists("b:jcommenter_move_cursor")
+  if !exists("g:jcommenter_move_cursor")
     return
   endif
-  if !b:jcommenter_move_cursor
+  if !g:jcommenter_move_cursor
     return
   endif
-  let startInsert = exists("b:jcommenter_autostart_insert_mode") && b:jcommenter_autostart_insert_mode
-  if exists("b:jcommenter_description_starts_from_first_line") && b:jcommenter_description_starts_from_first_line
+  let startInsert = exists("g:jcommenter_autostart_insert_mode") && g:jcommenter_autostart_insert_mode
+  if exists("g:jcommenter_description_starts_from_first_line") && g:jcommenter_description_starts_from_first_line
     call s:MoveCursorToEOL(s:rangeStart)
   else
     call s:MoveCursorToEOL(s:rangeStart + 1)
@@ -1214,14 +1202,14 @@ let s:invalComments      = '\%(' . s:noCommentTrunk . '\)\|\%(' . s:noParamTagCo
 fun! SearchInvalidComment(backwards)
   let param = a:backwards ? "wb" : "w"
   if a:backwards
-    if !b:jcommenter_description_starts_from_first_line && getline(".") =~ '^\s*\*\s*$'
+    if !g:jcommenter_description_starts_from_first_line && getline(".") =~ '^\s*\*\s*$'
       normal k
     endif
     normal k$
   endif
   let result = search(s:invalComments, param)
   if result > 0
-    if !b:jcommenter_description_starts_from_first_line
+    if !g:jcommenter_description_starts_from_first_line
       let isTrunk = (getline(".") =~ '^\s*\/\*\*')
       if isTrunk
         normal j
@@ -1239,10 +1227,10 @@ function! ConditionalWriter()
   let doDoc2 = (line =~ '^\s*\u\w*\s*(.*)')  " Constructors (allways begin w/ uppercase letter)
   let doDoc3 = (line =~ '^\s*\%([a-z]\+\s\+\)*class\s\+\u\w*\%(\s\+\%(implements\|extends\)\s\+.*\)\{0,2}')
   if doDoc || doDoc2 || doDoc3
-    let oldmove = b:jcommenter_move_cursor
-    let b:jcommenter_move_cursor = 0
+    let oldmove = g:jcommenter_move_cursor
+    let g:jcommenter_move_cursor = 0
     call JCommentWriter()
-    let b:jcommenter_move_cursor = oldmove
+    let g:jcommenter_move_cursor = oldmove
   endif
 endfunction
 
